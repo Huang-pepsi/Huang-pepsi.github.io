@@ -6,7 +6,7 @@
   <link href="https://huang-pepsi.github.io/atom.xml" rel="self"/>
   
   <link href="https://huang-pepsi.github.io/"/>
-  <updated>2023-09-16T05:45:06.058Z</updated>
+  <updated>2023-09-17T04:09:23.292Z</updated>
   <id>https://huang-pepsi.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>first blog</title>
-    <link href="https://huang-pepsi.github.io/2023/09/16/first-blog/"/>
-    <id>https://huang-pepsi.github.io/2023/09/16/first-blog/</id>
+    <title>first post</title>
+    <link href="https://huang-pepsi.github.io/2023/09/16/First-Post/"/>
+    <id>https://huang-pepsi.github.io/2023/09/16/First-Post/</id>
     <published>2023-09-15T16:00:00.000Z</published>
-    <updated>2023-09-16T05:45:06.058Z</updated>
+    <updated>2023-09-17T04:09:23.292Z</updated>
     
     <content type="html"><![CDATA[<p>初次搭建博客，花了几个小时部署好自己的GitHub博客，过程很有收获，也还有一些盲点。<br>这是自己的一个里程碑，标志着向着专业软件工程师又前进了一步！</p>]]></content>
     
