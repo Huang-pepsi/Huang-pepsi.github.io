@@ -6,7 +6,7 @@
   <link href="https://huang-pepsi.github.io/atom.xml" rel="self"/>
   
   <link href="https://huang-pepsi.github.io/"/>
-  <updated>2023-09-20T12:38:42.303Z</updated>
+  <updated>2023-09-20T13:09:18.403Z</updated>
   <id>https://huang-pepsi.github.io/</id>
   
   <author>
@@ -17,9 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>计算机网络学习小结</title>
+    <link href="https://huang-pepsi.github.io/2023/09/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/"/>
+    <id>https://huang-pepsi.github.io/2023/09/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/</id>
+    <published>2023-09-20T12:47:06.000Z</published>
+    <updated>2023-09-20T13:09:18.403Z</updated>
+    
+    <content type="html"><![CDATA[<p>TCP&#x2F;IP五层网络自顶向下分别为应用层、传输层、网络层、数据链路层、物理层，也可分为四层（数据链路层与物理层合并为网络接口层）<br>![[Pasted image 20230920210006.png]]</p><p>各层用到的协议：<br>![[Pasted image 20230920210606.png]]</p><h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><pre><code>1.IP：IP地址就是给因特网上的每一个主机（或路由器）的每一个接口（网卡）分配一个在全世界范围内唯一的32位的标识符。IP地址并不仅仅指明一个主机，而是还指明了主机所连接到的网络。2.</code></pre><h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h1 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;TCP&amp;#x2F;IP五层网络自顶向下分别为应用层、传输层、网络层、数据链路层、物理层，也可分为四层（数据链路层与物理层合并为网络接口层）&lt;br&gt;![[Pasted image 20230920210006.png]]&lt;/p&gt;
+&lt;p&gt;各层用到的协议：&lt;br&gt;![[Paste</summary>
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://huang-pepsi.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编码知识小结</title>
-    <link href="https://huang-pepsi.github.io/2023/09/20/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
-    <id>https://huang-pepsi.github.io/2023/09/20/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/</id>
+    <link href="https://huang-pepsi.github.io/2023/09/20/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+    <id>https://huang-pepsi.github.io/2023/09/20/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/</id>
     <published>2023-09-20T12:35:35.000Z</published>
     <updated>2023-09-20T12:38:42.303Z</updated>
     
