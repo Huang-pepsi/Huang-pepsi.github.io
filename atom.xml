@@ -6,7 +6,7 @@
   <link href="https://huang-pepsi.github.io/atom.xml" rel="self"/>
   
   <link href="https://huang-pepsi.github.io/"/>
-  <updated>2023-10-16T01:38:53.460Z</updated>
+  <updated>2023-10-26T09:01:16.487Z</updated>
   <id>https://huang-pepsi.github.io/</id>
   
   <author>
@@ -17,9 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>设计模式原则</title>
+    <link href="https://huang-pepsi.github.io/2023/10/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/"/>
+    <id>https://huang-pepsi.github.io/2023/10/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/</id>
+    <published>2023-10-26T09:00:51.000Z</published>
+    <updated>2023-10-26T09:01:16.487Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.单一职责原则</p><p>2.开闭原则：抽象约束，封装变化<br>例如：矩形和圆类，需要获取它们的面积<br>&#x2F;&#x2F; 面积计算器<br>class AreaCalculator<br>{<br>    double area(Rectangle shape)<br>    {<br>        return shape.getWidth() * shape.getHeight();<br>    }<br>}&#x2F;&#x2F;此设计不利于扩展，可设计一个shape接口类实现计算面积</p><p>优化：<br>class shape<br>{<br>    double getArea();<br>}<br>class juxing:public shape</p><p>3.里氏替换原则：关于继承</p><p>例如：企鹅、鸵鸟和几维鸟从生物学的角度来划分，它们属于鸟类；但从类的继承关系来看，由于它们不能继承“鸟”会飞的功能，所以它们不能定义成“鸟”的子类。同样，由于“气球鱼”不会游泳，所以不能定义成“鱼”的子类；“玩具炮”炸不了敌人，所以不能定义成“炮”的子类等。</p><p>对于正方形和长方形最好的做法是再添加一个父类，他们同时继承自这个父类。</p><p>对此修正方法是取消原来的继承关系，重新设计它们之间的关系</p><p>4.依赖倒置原则<br>例如：商店与顾客，顾客从不同的商店购物<br>class customer<br>{<br>    void shopping (711shop shop){shop.sell}}<br>}&#x2F;&#x2F;此写法不利于扩展<br>优化：设置统一接口类shop，增加新的shop则只需要继承shop类即可<br>class customer<br>{<br>    void shopping (shop shop){shop.sell}<br>}</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1.单一职责原则&lt;/p&gt;
+&lt;p&gt;2.开闭原则：抽象约束，封装变化&lt;br&gt;例如：矩形和圆类，需要获取它们的面积&lt;br&gt;&amp;#x2F;&amp;#x2F; 面积计算器&lt;br&gt;class AreaCalculator&lt;br&gt;{&lt;br&gt;    double area(Rectangle sh</summary>
+      
+    
+    
+    
+    
+    <category term="设计模式" scheme="https://huang-pepsi.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Qt信号与槽</title>
-    <link href="https://huang-pepsi.github.io/2023/10/16/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/"/>
-    <id>https://huang-pepsi.github.io/2023/10/16/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/</id>
+    <link href="https://huang-pepsi.github.io/2023/10/16/Blog/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/"/>
+    <id>https://huang-pepsi.github.io/2023/10/16/Blog/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/</id>
     <published>2023-10-16T01:34:24.000Z</published>
     <updated>2023-10-16T01:38:53.460Z</updated>
     
@@ -41,8 +64,8 @@
   
   <entry>
     <title>Qt项目的构建与编译</title>
-    <link href="https://huang-pepsi.github.io/2023/09/25/Qt%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E8%AF%91/"/>
-    <id>https://huang-pepsi.github.io/2023/09/25/Qt%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E8%AF%91/</id>
+    <link href="https://huang-pepsi.github.io/2023/09/25/Blog/Qt%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E8%AF%91/"/>
+    <id>https://huang-pepsi.github.io/2023/09/25/Blog/Qt%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E8%AF%91/</id>
     <published>2023-09-25T07:41:22.000Z</published>
     <updated>2023-09-25T12:42:25.347Z</updated>
     
@@ -64,8 +87,8 @@
   
   <entry>
     <title>计算机网络学习小结</title>
-    <link href="https://huang-pepsi.github.io/2023/09/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/"/>
-    <id>https://huang-pepsi.github.io/2023/09/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/</id>
+    <link href="https://huang-pepsi.github.io/2023/09/20/Blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/"/>
+    <id>https://huang-pepsi.github.io/2023/09/20/Blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/</id>
     <published>2023-09-20T12:47:06.000Z</published>
     <updated>2023-10-16T01:23:49.537Z</updated>
     
@@ -87,8 +110,8 @@
   
   <entry>
     <title>编码知识小结</title>
-    <link href="https://huang-pepsi.github.io/2023/09/20/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
-    <id>https://huang-pepsi.github.io/2023/09/20/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/</id>
+    <link href="https://huang-pepsi.github.io/2023/09/20/Blog/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/"/>
+    <id>https://huang-pepsi.github.io/2023/09/20/Blog/%E7%BC%96%E7%A0%81%E7%9F%A5%E8%AF%86%E5%B0%8F%E7%BB%93/</id>
     <published>2023-09-20T12:35:35.000Z</published>
     <updated>2023-09-20T12:38:42.303Z</updated>
     
@@ -110,8 +133,8 @@
   
   <entry>
     <title>C++多态</title>
-    <link href="https://huang-pepsi.github.io/2023/09/19/C++%E5%A4%9A%E6%80%81/C++%E5%A4%9A%E6%80%81/"/>
-    <id>https://huang-pepsi.github.io/2023/09/19/C++%E5%A4%9A%E6%80%81/C++%E5%A4%9A%E6%80%81/</id>
+    <link href="https://huang-pepsi.github.io/2023/09/19/Blog/C++%E5%A4%9A%E6%80%81/"/>
+    <id>https://huang-pepsi.github.io/2023/09/19/Blog/C++%E5%A4%9A%E6%80%81/</id>
     <published>2023-09-19T14:39:32.000Z</published>
     <updated>2023-09-28T13:08:11.834Z</updated>
     
