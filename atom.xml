@@ -44,9 +44,9 @@
     <link href="https://huang-pepsi.github.io/2023/10/16/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/"/>
     <id>https://huang-pepsi.github.io/2023/10/16/Qt%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD/</id>
     <published>2023-10-16T01:34:24.000Z</published>
-    <updated>2023-10-16T01:38:53.460Z</updated>
+    <updated>2023-10-27T07:12:48.166Z</updated>
     
-    <content type="html"><![CDATA[<p>1.传统写法<br>SIGNAL（f（int ））SLOT（g（int ））<br>此写法只是简单的字符串匹配，信号和槽的参数类型在字符串上必须是一致的。所以该写法不能适配typdef与namespace以及兼容类型的参数。</p><p>2.写法1的扩展<br><img src="Pasted image 20230921142328.png" width=60%></p><p>connect为qobject的函数</p><p>3.以指针形式指定<br><img src="Pasted image 20230921142451.png" width=60%></p><p>此时会有一个问题：若函数发生重载，无法指定唯一的函数<br>解决：使用函数指针<br>![[Pasted image 20230921142752.png]]<br>简化版：static_cast&lt;(void)(&amp;B::*)(int)&gt;(&amp;B::fun)</p>]]></content>
+    <content type="html"><![CDATA[<p>1.传统写法<br>SIGNAL（f（int ））SLOT（g（int ））<br>此写法只是简单的字符串匹配，信号和槽的参数类型在字符串上必须是一致的。所以该写法不能适配typdef与namespace以及兼容类型的参数。</p><p>2.写法1的扩展<br><img src="Pasted image 20230921142328.png" width=60%></p><p>connect为qobject的函数</p><p>3.以指针形式指定<br><img src="Pasted image 20230921142451.png" width=60%></p><p>此时会有一个问题：若函数发生重载，无法指定唯一的函数<br>解决：使用函数指针<br><img src="Pasted image 20230921142752.png" width=60%><br>简化版：static_cast&lt;(void)(&amp;B::*)(int)&gt;(&amp;B::fun)</p>]]></content>
     
     
       
