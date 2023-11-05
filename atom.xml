@@ -6,7 +6,7 @@
   <link href="https://huang-pepsi.github.io/atom.xml" rel="self"/>
   
   <link href="https://huang-pepsi.github.io/"/>
-  <updated>2023-10-31T07:54:11.079Z</updated>
+  <updated>2023-11-04T23:54:09.788Z</updated>
   <id>https://huang-pepsi.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>const小结</title>
+    <link href="https://huang-pepsi.github.io/2023/11/05/const%E5%B0%8F%E7%BB%93/"/>
+    <id>https://huang-pepsi.github.io/2023/11/05/const%E5%B0%8F%E7%BB%93/</id>
+    <published>2023-11-04T23:50:23.000Z</published>
+    <updated>2023-11-04T23:54:09.788Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.constexpr与const</p><ul><li>constexpr修饰的变量允许编译器在编译阶段对其进行验证，检验变量的值是否为常量（如果认定变量为常量表达式，可声明为constexpr）</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1.constexpr与const&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;constexpr修饰的变量允许编译器在编译阶段对其进行验证，检验变量的值是否为常量（如果认定变量为常量表达式，可声明为constexpr）&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="C++" scheme="https://huang-pepsi.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>代码Review</title>
