@@ -6,7 +6,7 @@
   <link href="https://huang-pepsi.github.io/atom.xml" rel="self"/>
   
   <link href="https://huang-pepsi.github.io/"/>
-  <updated>2023-11-05T14:32:29.089Z</updated>
+  <updated>2023-11-12T06:04:20.339Z</updated>
   <id>https://huang-pepsi.github.io/</id>
   
   <author>
@@ -17,13 +17,80 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Qt元对象系统、对象树、属性系统</title>
-    <link href="https://huang-pepsi.github.io/2023/11/05/Qt%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E3%80%81%E5%AF%B9%E8%B1%A1%E6%A0%91%E3%80%81%E5%B1%9E%E6%80%A7%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://huang-pepsi.github.io/2023/11/05/Qt%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E3%80%81%E5%AF%B9%E8%B1%A1%E6%A0%91%E3%80%81%E5%B1%9E%E6%80%A7%E7%B3%BB%E7%BB%9F/</id>
-    <published>2023-11-05T14:32:03.000Z</published>
-    <updated>2023-11-05T14:32:29.089Z</updated>
+    <title>关于构造函数QWidget（parent）</title>
+    <link href="https://huang-pepsi.github.io/2023/11/12/%E5%85%B3%E4%BA%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0QWidget%EF%BC%88parent%EF%BC%89/"/>
+    <id>https://huang-pepsi.github.io/2023/11/12/%E5%85%B3%E4%BA%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0QWidget%EF%BC%88parent%EF%BC%89/</id>
+    <published>2023-11-12T06:02:28.000Z</published>
+    <updated>2023-11-12T06:04:20.339Z</updated>
     
-    <content type="html"><![CDATA[<p>1.RTTI机制<br><strong>由于C++是静态类型语言，有关类的信息只在编译期被使用，编译后就不再保留，因此程序运行时无法获取类的信息。这时就需要使用「运行期类型信息」，即RTTI（Run-Time Type Information）</strong>。一般拥有程序运行时保存对象类型信息能力的语言，我们就称该语言支持RTTI。C++标准定义了dynamic_cast和typeid两个关键字用于支持RTTI机制。</p><p>dynamic_cast的作用是将指向基类对象的指针转换为指向派生类对象的指针，如果转换失败则返回NULL。因此，dynamic_cast唯一的功能就是判断一个对象具有哪些类型。例如有4个类GrandFather、Father、Son和GrandSon，右边的类分别是左边类的派生类。此时有一个类型为<code>GrandFather *</code>的指针p，为了判断p所指对象是否具有Son的类型，可以使用语句<code>Son *son = dynamic_cast&lt;Son*&gt;(p</code>)。如果返回的son不为NULL，则p所指的对象具有Son类型。同理我们也可以得到该对象是否具有Father、GrandSon类型，</p><p>但是仅仅知道这些是不够的。因为有时候某个指针所指的对象行为不正常，如果无法知道所指对象的实际类型，就必须审查该基类及其所有派生类的代码。反过来，如果我们能够知道该对象的实际类型，那就只需要审查该类型的代码即可。typeid的作用是返回类型的名字。因此，typeid的功能就是在dynamic_cast的范围内进一步的确定指针所指对象的实际类型。</p><p>2.元对象系统<br>Meta Object的所有数据和方法都封装在QMetaObject类中，它包含一个Qt类的meta信息，并且提供查询功能。</p><p>元对象系统基于三件事：</p><ol><li><a href="https://runebook.dev/en/docs/qt/qobject">QObject</a> 类为可以利用元对象系统的对象提供基类。</li><li>类声明的 private 部分内的 <a href="https://runebook.dev/en/docs/qt/qobject#Q_OBJECT">Q_OBJECT</a> 宏用于启用元对象功能，例如动态属性、信号和插槽。</li><li><a href="https://runebook.dev/en/docs/qt/moc">元对象编译器</a> （） 为每个 <a href="https://runebook.dev/en/docs/qt/qobject">QObject</a> 子类提供实现元对象功能所需的代码。<code>moc</code></li></ol><p>meta信息包含：</p><ol><li>信号表（signal table），与对应Qt类相关的系统定义及自定义的signal的名字。</li><li>槽表（slot table），与对应Qt类相关的系统定义及自定义的slot的名字。</li><li>类信息表（class info table），Qt类的类型信息。</li><li>属性表（property table），与对应类中的所有属性的名字。</li><li>指向parent meta object的指针。</li></ol><p>3.对象树<br>这个概念非常好理解。因为 QObject 类就有一个私有变量 <code>QList&lt;QObject *&gt;</code>，专门存储这个类的子孙后代们。比如创建一个 QObject 并指定父对象时，就会把自己加入到父对象的 childre() 列表中，也就是 <code>QList&lt;QObject *&gt;</code> 变量中。</p><p>注意setparent细节</p><p>4.属性系统<br>QObject中的子类的私有域中使用Q_PROPERTY宏来声明一个属性</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="Widget-Widget-QWidget-parent-QWidget-parent"><a href="#Widget-Widget-QWidget-parent-QWidget-parent" class="headerlink" title="Widget::Widget(QWidget *parent) :QWidget(parent)"></a>Widget::Widget(QWidget *parent) :QWidget(parent)</h3><p>例子：<br>基类<br><img src="Pasted image 20231110154435.png" width=60%><br>子类<br><img src="Pasted image 20231110154527.png" width=60%></p><p>结果：<br><img src="Pasted image 20231110154545.png" width=60%><br>结论：子类构造函数指定父类的构造函数会调用父类的构造函数，若不指定，则调用父类的默认构造函数</p><p>源码：<br><img src="Pasted image 20231110155342.png" width=60%><br>结论：如果parent参数非空的话，那么该构造函数使用了其父窗口的调色板，并且发送了QChildEvent事件，这会让新的窗口成为parent所指窗口的子窗口，那么当父窗口被删除时，子窗口也会自动的被删除。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Widget-Widget-QWidget-parent-QWidget-parent&quot;&gt;&lt;a href=&quot;#Widget-Widget-QWidget-parent-QWidget-parent&quot; class=&quot;headerlink&quot; title=&quot;Widget</summary>
+      
+    
+    
+    
+    
+    <category term="Qt" scheme="https://huang-pepsi.github.io/tags/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Qt文件相关（File）</title>
+    <link href="https://huang-pepsi.github.io/2023/11/12/Qt%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%EF%BC%88File%EF%BC%89/"/>
+    <id>https://huang-pepsi.github.io/2023/11/12/Qt%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%EF%BC%88File%EF%BC%89/</id>
+    <published>2023-11-12T05:57:19.000Z</published>
+    <updated>2023-11-12T06:01:22.886Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.QFile File(<code>QDir::currentPath()+&quot;/../Config/IDExpert.config&quot;</code>);<br>使用绝对路径或相对路径</p><p>2.使用QDomDocument读取xml文件的两种方式</p><ul><li><img src="Pasted image 20231107135135.png" width=60%></li><li><img src="Pasted image 20231107135147.png" width=60%></li></ul><p>3.用户选择特定文件QFileDialog<br>QString QFileDialog::<strong>getOpenFileName</strong>(<br>QWidget *parent &#x3D; nullptr,<br>const QString &amp;caption &#x3D; QString(),<br>const QString &amp;dir &#x3D; QString(),<br>const QString &amp;filter &#x3D; QString(),<br>QString *selectedFilter &#x3D; nullptr,<br>Options options &#x3D; 0);</p><p>4.QDomElement继承QDomNode<br>元素、文本、注释三者有所区别<br><img src="Pasted image 20231107152756.png" width=60%><br><img src="Pasted image 20231107152020.png" width=60%>为元素结点<br><img src="Pasted image 20231107152037.png" width=60%>为文本节点<br><img src="Pasted image 20231107152807.png" width=60%>为注释结点</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1.QFile File(&lt;code&gt;QDir::currentPath()+&amp;quot;/../Config/IDExpert.config&amp;quot;&lt;/code&gt;);&lt;br&gt;使用绝对路径或相对路径&lt;/p&gt;
+&lt;p&gt;2.使用QDomDocument读取xml文件的两种方式</summary>
+      
+    
+    
+    
+    
+    <category term="Qt" scheme="https://huang-pepsi.github.io/tags/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QThread用法</title>
+    <link href="https://huang-pepsi.github.io/2023/11/12/QThread%E7%94%A8%E6%B3%95/"/>
+    <id>https://huang-pepsi.github.io/2023/11/12/QThread%E7%94%A8%E6%B3%95/</id>
+    <published>2023-11-12T05:50:18.000Z</published>
+    <updated>2023-11-12T05:56:05.962Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="QThread使用的两种方法"><a href="#QThread使用的两种方法" class="headerlink" title="QThread使用的两种方法"></a>QThread使用的两种方法</h3><p>1.moveToThread()——为QObject的公有方法</p><ul><li>继承QObject的类可使用该函数，移入新线程，经检测与创建该类的类的线程不一样</li></ul><p>2.重写run函数</p><h2 id="quit与exit："><a href="#quit与exit：" class="headerlink" title="quit与exit："></a>quit与exit：</h2><p> <code>quit()</code>是一个公共槽函数，可以通过信号-槽机制来触发线程退出。<br> 当您调用<code>quit()</code>时，它会发送一个<code>QThread::finished</code>信号，这会导致线程结束执行并退出。<br> <code>quit()</code>通常与<code>start()</code>一起使用，以在需要时请求线程退出。</p><p> <code>exit()</code>用于立即终止线程的执行，不等待线程完成当前任务或清理操作，这可能导致资源泄漏或数据不一致。<br><code> exit()</code>不会触发<code>QThread::finished</code>信号。</p><p>通常情况下，建议使用<code>quit()</code>来请求线程退出，因为它更安全，允许线程完成当前任务和执行必要的清理操作。<code>exit()</code>方法应该只在特殊情况下使用，例如在应用程序退出时，当您确定不需要等待线程完成，或者当您需要强制终止线程时。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;QThread使用的两种方法&quot;&gt;&lt;a href=&quot;#QThread使用的两种方法&quot; class=&quot;headerlink&quot; title=&quot;QThread使用的两种方法&quot;&gt;&lt;/a&gt;QThread使用的两种方法&lt;/h3&gt;&lt;p&gt;1.moveToThread()——为QOb</summary>
+      
+    
+    
+    
+    
+    <category term="Qt" scheme="https://huang-pepsi.github.io/tags/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QObject、Qt元对象系统、对象树、属性系统</title>
+    <link href="https://huang-pepsi.github.io/2023/11/05/QObject%E3%80%81Qt%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E3%80%81%E5%AF%B9%E8%B1%A1%E6%A0%91%E3%80%81%E5%B1%9E%E6%80%A7%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://huang-pepsi.github.io/2023/11/05/QObject%E3%80%81Qt%E5%85%83%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E3%80%81%E5%AF%B9%E8%B1%A1%E6%A0%91%E3%80%81%E5%B1%9E%E6%80%A7%E7%B3%BB%E7%BB%9F/</id>
+    <published>2023-11-05T14:32:03.000Z</published>
+    <updated>2023-11-08T13:20:01.184Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.RTTI机制<br><strong>由于C++是静态类型语言，有关类的信息只在编译期被使用，编译后就不再保留，因此程序运行时无法获取类的信息。这时就需要使用「运行期类型信息」，即RTTI（Run-Time Type Information）</strong>。一般拥有程序运行时保存对象类型信息能力的语言，我们就称该语言支持RTTI。C++标准定义了dynamic_cast和typeid两个关键字用于支持RTTI机制。</p><p>dynamic_cast的作用是将指向基类对象的指针转换为指向派生类对象的指针，如果转换失败则返回NULL。因此，dynamic_cast唯一的功能就是判断一个对象具有哪些类型。例如有4个类GrandFather、Father、Son和GrandSon，右边的类分别是左边类的派生类。此时有一个类型为<code>GrandFather *</code>的指针p，为了判断p所指对象是否具有Son的类型，可以使用语句<code>Son *son = dynamic_cast&lt;Son*&gt;(p</code>)。如果返回的son不为NULL，则p所指的对象具有Son类型。同理我们也可以得到该对象是否具有Father、GrandSon类型，</p><p>但是仅仅知道这些是不够的。因为有时候某个指针所指的对象行为不正常，如果无法知道所指对象的实际类型，就必须审查该基类及其所有派生类的代码。反过来，如果我们能够知道该对象的实际类型，那就只需要审查该类型的代码即可。typeid的作用是返回类型的名字。因此，typeid的功能就是在dynamic_cast的范围内进一步的确定指针所指对象的实际类型。</p><p>2.元对象系统<br>Meta Object的所有数据和方法都封装在QMetaObject类中，它包含一个Qt类的meta信息，并且提供查询功能。</p><p>元对象系统基于三件事：</p><ol><li><a href="https://runebook.dev/en/docs/qt/qobject">QObject</a> 类为可以利用元对象系统的对象提供基类。</li><li>类声明的 private 部分内的 <a href="https://runebook.dev/en/docs/qt/qobject#Q_OBJECT">Q_OBJECT</a> 宏用于启用元对象功能，例如动态属性、信号和插槽。</li><li><a href="https://runebook.dev/en/docs/qt/moc">元对象编译器</a> （） 为每个 <a href="https://runebook.dev/en/docs/qt/qobject">QObject</a> 子类提供实现元对象功能所需的代码。<code>moc</code></li></ol><p>meta信息包含：</p><ol><li>信号表（signal table），与对应Qt类相关的系统定义及自定义的signal的名字。</li><li>槽表（slot table），与对应Qt类相关的系统定义及自定义的slot的名字。</li><li>类信息表（class info table），Qt类的类型信息。</li><li>属性表（property table），与对应类中的所有属性的名字。</li><li>指向parent meta object的指针。</li></ol><p>Q_OBJECT宏：<br>moc预处理器将对<strong>头文件</strong>中标记了该宏的类进行处理，不会处理cpp文件中的类似声明，</p><p>3.对象树<br>这个概念非常好理解。因为 QObject 类就有一个私有变量 <code>QList&lt;QObject *&gt;</code>，专门存储这个类的子孙后代们。比如创建一个 QObject 并指定父对象时，就会把自己加入到父对象的 childre() 列表中，也就是 <code>QList&lt;QObject *&gt;</code> 变量中。</p><p>注意setparent细节</p><p>4.属性系统<br>QObject中的子类的私有域中使用Q_PROPERTY宏来声明一个属性</p>]]></content>
     
     
       
